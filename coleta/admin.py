@@ -2,14 +2,14 @@
 Configuração do Django Admin para o aplicativo de coleta
 """
 
-from django.contrib.gis import admin
+from django.contrib import admin
 from .models import Imovel
 
 
 @admin.register(Imovel)
-class ImovelAdmin(admin.GISModelAdmin):
+class ImovelAdmin(admin.ModelAdmin):  # <<<< Mudou de GISModelAdmin para ModelAdmin
     """
-    Administração de imóveis com suporte a mapas
+    Administração de imóveis
     """
     
     list_display = [
@@ -46,9 +46,10 @@ class ImovelAdmin(admin.GISModelAdmin):
         ('Endereço', {
             'fields': ('endereco', 'bairro', 'cidade')
         }),
-        ('Localização', {
-            'fields': ('localizacao',)
-        }),
+        # Localização comentada temporariamente (campo GIS)
+        # ('Localização', {
+        #     'fields': ('localizacao',)
+        # }),
         ('Informações Adicionais', {
             'fields': ('observacoes', 'foto')
         }),
@@ -57,11 +58,6 @@ class ImovelAdmin(admin.GISModelAdmin):
             'classes': ('collapse',)
         }),
     )
-    
-    # Configuração do mapa no admin
-    default_lon = -4800000  # Longitude padrão (Belém, PA)
-    default_lat = -130000   # Latitude padrão
-    default_zoom = 12
     
     def save_model(self, request, obj, form, change):
         """
