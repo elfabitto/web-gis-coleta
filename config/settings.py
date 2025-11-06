@@ -8,6 +8,37 @@ import os
 from pathlib import Path
 from decouple import config
 
+
+# Configuração GDAL para Windows (OSGeo4W)
+#if os.name == 'nt':  # Se for Windows
+#    import sys
+#    
+#    OSGEO4W = r"C:\Users\fabio.dlima\AppData\Local\Programs\OSGeo4W"
+#    
+#    if os.path.isdir(OSGEO4W):
+#        # Adiciona MÚLTIPLOS diretórios ao PATH (ordem importante!)
+#        osgeo_paths = [
+#            os.path.join(OSGEO4W, 'bin'),
+#            os.path.join(OSGEO4W, 'apps', 'gdal', 'bin'),
+#            os.path.join(OSGEO4W, 'apps', 'proj', 'bin'),
+#            os.path.join(OSGEO4W, 'apps', 'Python39', 'Scripts'),
+#        ]
+        
+        # Adiciona todos os caminhos ao PATH
+#        for path in osgeo_paths:
+#            if os.path.isdir(path):
+#                os.environ['PATH'] = path + ';' + os.environ['PATH']
+#        
+#        # Configura as variáveis de ambiente
+#        os.environ['OSGEO4W_ROOT'] = OSGEO4W
+#        os.environ['GDAL_DATA'] = os.path.join(OSGEO4W, 'share', 'gdal')
+#        os.environ['PROJ_LIB'] = os.path.join(OSGEO4W, 'share', 'proj')
+#        
+#        # Define explicitamente o caminho das bibliotecas
+#        GDAL_LIBRARY_PATH = os.path.join(OSGEO4W, 'bin', 'gdal311.dll')
+#        GEOS_LIBRARY_PATH = os.path.join(OSGEO4W, 'bin', 'geos_c.dll')
+
+        
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -27,7 +58,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.gis',  # GeoDjango
+    #'django.contrib.gis',  # GeoDjango
     
     # Third party
     'rest_framework',
